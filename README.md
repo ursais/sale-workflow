@@ -93,6 +93,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [sale_invoice_policy](sale_invoice_policy/) | 16.0.1.0.0 (unported) |  | Sales Management: let the user choose the invoice policy on the order
 
+
 [//]: # (end addons)
 
 <!-- prettier-ignore-end -->
