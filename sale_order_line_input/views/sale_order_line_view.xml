@@ -55,17 +55,8 @@
                         'required': [('display_type', '=', False)]
                     }"
                     force_save="1"
-                    context="{
-                        'partner_id': parent.partner_id,
-                        'quantity': product_uom_qty,
-                        'pricelist': parent.pricelist_id,
-                        'uom': product_uom,
-                        'company_id': parent.company_id,
-                        'default_lst_price': price_unit,
-                        'default_description_sale': name,
-                    }"
                     options="{'no_open': True}"
-                    domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                    domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', company_id)]"
                     widget="sol_product_many2one"
                 />
                 <field
@@ -76,17 +67,8 @@
                         'readonly': [('product_updatable', '=', False)],
                         'required': [('display_type', '=', False)],
                     }"
-                    context="{
-                        'partner_id': parent.partner_id,
-                        'quantity': product_uom_qty,
-                        'pricelist': parent.pricelist_id,
-                        'uom': product_uom,
-                        'company_id': parent.company_id,
-                        'default_list_price': price_unit,
-                        'default_description_sale': name,
-                    }"
                     options="{'no_open': True}"
-                    domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                    domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', company_id)]"
                     widget="sol_product_many2one"
                 />
                 <field name="product_uom_category_id" invisible="1" />
@@ -99,13 +81,6 @@
                     name="product_uom_qty"
                     decoration-info="(not display_type and invoice_status == 'to invoice')"
                     decoration-bf="(not display_type and invoice_status == 'to invoice')"
-                    context="{
-                        'partner_id': parent.partner_id,
-                        'quantity': product_uom_qty,
-                        'pricelist': parent.pricelist_id,
-                        'uom': product_uom,
-                        'company_id': parent.company_id
-                    }"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                 />
                 <field
@@ -133,7 +108,7 @@
                         'readonly': [('state', 'in', ('sale','done', 'cancel'))],
                         'required': [('display_type', '=', False)],
                     }"
-                    context="{'company_id': parent.company_id}"
+                    context="{'company_id': company_id}"
                     groups="uom.group_uom"
                     options="{&quot;no_open&quot;: True}"
                     optional="show"
@@ -155,7 +130,7 @@
                     name="tax_id"
                     widget="many2many_tags"
                     options="{'no_create': True}"
-                    domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
+                    domain="[('type_tax_use','=','sale'),('company_id','=', company_id)]"
                     invisible="context.get('tax_hide', False)"
                     attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"
                     optional="show"
