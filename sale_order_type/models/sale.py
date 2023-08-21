@@ -96,6 +96,7 @@ class SaleOrder(models.Model):
                         )
                     }
                 )
+            vals.update({"company_id": order_type.company_id or order_type.warehouse_id.company_id or self.company_id})
             if vals:
                 order.update(vals)
             # Order line values
