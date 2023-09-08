@@ -169,8 +169,8 @@ class BlanketOrder(models.Model):
         default=0.0,
     )
     picking_ids = fields.One2many(
-        "stock.picking",
-        "blanket_id",
+        comodel_name="stock.picking",
+        inverse_name="blanket_id",
     )
 
     def _get_sale_orders(self):
