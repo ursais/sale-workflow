@@ -168,6 +168,10 @@ class BlanketOrder(models.Model):
         search="_search_delivered_uom_qty",
         default=0.0,
     )
+    picking_ids = fields.One2many(
+        comodel_name="stock.picking",
+        inverse_name="blanket_id",
+    )
 
     def _get_sale_orders(self):
         return self.mapped("line_ids.sale_lines.order_id")
@@ -328,6 +332,11 @@ class BlanketOrder(models.Model):
         lines = self.mapped("line_ids")
         if len(lines) > 0:
             action["domain"] = [("id", "in", lines.ids)]
+        return action
+
+    def action_get_stock_picking(self):
+        action = self.env['ir.actions.act_window']._for_xml_id('stock.action_picking_tree_all')
+        action['domain'] = [('id', '=', self.picking_ids.id)]
         return action
 
     @api.model
