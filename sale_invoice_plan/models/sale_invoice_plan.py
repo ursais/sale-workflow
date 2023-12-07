@@ -97,7 +97,10 @@ class SaleInvoicePlan(models.Model):
             # With invoice already created, no recompute
             if rec.invoiced:
                 rec.amount = rec.amount_invoiced
-                rec.percent = rec.amount / rec.sale_id.amount_untaxed * 100
+                if rec.sale_id.amount_untaxed:
+                    rec.percent = rec.amount / rec.sale_id.amount_untaxed * 100
+                else:
+                    rec.percent = 0
                 continue
             # For last line, amount is the left over
             if rec.last:
