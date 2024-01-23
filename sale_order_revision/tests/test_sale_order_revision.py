@@ -23,6 +23,6 @@ class TestSaleOrderRevision(test_base_revision.TestBaseRevision):
 
     def test_action_cancel_create_revision(self):
         sale = self._create_tester()
-        action = sale.action_cancel_create_revision()
+        sale.action_cancel_create_revision()
         self.assertEqual(sale.state, "cancel", "Original SO was cancelled")
         self.assertTrue(sale.current_revision_id, "A new SO version was created")
