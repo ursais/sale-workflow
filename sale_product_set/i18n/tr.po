@@ -46,6 +46,12 @@ msgid "Add set to sale order"
 msgstr ""
 
 #. module: sale_product_set
+#: model_terms:ir.ui.view,arch_db:sale_product_set.res_config_settings_inherit_view
+msgid ""
+"Archive/unarchive product sets related to partners together with partner"
+msgstr ""
+
+#. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
 msgid "Archived"
@@ -59,6 +65,16 @@ msgstr ""
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__company_id
 msgid "Company"
+msgstr ""
+
+#. module: sale_product_set
+#: model:ir.model,name:sale_product_set.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_product_set
+#: model:ir.model,name:sale_product_set.model_res_partner
+msgid "Contact"
 msgstr ""
 
 #. module: sale_product_set
@@ -89,6 +105,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__display_name
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__display_name
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__display_name
+#: model:ir.model.fields,field_description:sale_product_set.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_product_set.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Görünen İsim"
 
@@ -102,6 +120,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__id
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__id
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__id
+#: model:ir.model.fields,field_description:sale_product_set.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_product_set.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
@@ -114,6 +134,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set____last_update
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add____last_update
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line____last_update
+#: model:ir.model.fields,field_description:sale_product_set.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:sale_product_set.field_res_partner____last_update
 msgid "Last Modified on"
 msgstr "Son değişiklik"
 
@@ -149,14 +171,17 @@ msgid "Product"
 msgstr ""
 
 #. module: sale_product_set
+#: model_terms:ir.ui.view,arch_db:sale_product_set.res_config_settings_inherit_view
+msgid "Product Sets"
+msgstr ""
+
+#. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_view
 #: model:ir.model,name:sale_product_set.model_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_id
 #: model:ir.ui.menu,name:sale_product_set.menu_product_set_config
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_search
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_tree
 msgid "Product set"
 msgstr ""
 
@@ -170,14 +195,11 @@ msgstr ""
 #: model:ir.model,name:sale_product_set.model_product_set_line
 #: model:ir.ui.menu,name:sale_product_set.menu_product_set_line_config
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_search
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_tree
 msgid "Product set line"
 msgstr ""
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_line_ids
-#: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
 msgid "Product set lines"
 msgstr ""
 
@@ -215,6 +237,18 @@ msgstr ""
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__skip_existing_products
 msgid "Skip Existing Products"
+msgstr ""
+
+#. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_res_config_settings__archive_partner_product_sets
+msgid "Sync product sets active state with partner"
+msgstr ""
+
+#. module: sale_product_set
+#: model:ir.model.fields,help:sale_product_set.field_res_config_settings__archive_partner_product_sets
+msgid ""
+"When a partner is archived or un-archived             its product sets are "
+"archived or un-archived as well."
 msgstr ""
 
 #. module: sale_product_set

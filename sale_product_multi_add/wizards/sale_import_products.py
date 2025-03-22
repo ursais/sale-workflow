@@ -34,18 +34,21 @@ class SaleImportProducts(models.TransientModel):
 
     @api.model
     def _get_line_values(self, sale, item):
-        sale_line = self.env["sale.order.line"].new(
+        sol_obj = self.env["sale.order.line"]
+        sale_line = sol_obj.new(
             {
                 "order_id": sale.id,
                 "name": item.product_id.name,
                 "product_id": item.product_id.id,
                 "product_uom_qty": item.quantity,
                 "product_uom": item.product_id.uom_id.id,
-                "price_unit": item.product_id.list_price,
+                "price_unit": item.product_id.with_context(
+                    pricelist=sale.pricelist_id.id
+                ).price,
             }
         )
-        sale_line.product_id_change()
         line_values = sale_line._convert_to_write(sale_line._cache)
+        line_values = sol_obj.play_onchanges(line_values, [])
         return line_values
 
     def select_products(self):

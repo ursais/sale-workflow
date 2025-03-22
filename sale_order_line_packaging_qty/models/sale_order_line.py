@@ -35,16 +35,22 @@ class SaleOrderLine(models.Model):
                 )
             else:
                 product_qty = sol.product_uom_qty
+            # Provide default values in case of missing product.
+            # Odoo does not prevent you to modify product packaging
+            # that are already linked to a sale order.
+            # If by chance the product is removed (yes, you can do it)
+            # this computation will be broken w/out this default.
+            precision = sol.product_packaging.product_uom_id.rounding or 0.01
             qty_mod = float_round(
                 product_qty % sol.product_packaging.qty,
-                precision_rounding=sol.product_packaging.product_uom_id.rounding,
+                precision_rounding=precision,
             )
             # After the rounding, the value could be equals to sol.product_packaging.qty
             # So just re-apply the '%'
             qty_mod = qty_mod % sol.product_packaging.qty
             if not float_is_zero(
                 qty_mod,
-                precision_digits=sol.product_packaging.product_uom_id.rounding,
+                precision_digits=precision,
             ):
                 # If qty does not fit in package reset package qty
                 sol.product_packaging_qty = 0
@@ -99,15 +105,3 @@ class SaleOrderLine(models.Model):
         else:
             self.update({"product_packaging_qty": 0})
         return super()._onchange_product_packaging()
-
-    @api.onchange("product_uom_qty")
-    def _onchange_product_uom_qty(self):
-        """
-        Ensure a warning is raised when changing the package if the qty
-        is not a multiple of the package qty.
-        """
-        # TODO Drop once https://github.com/odoo/odoo/pull/49150/ is merged
-        res = super()._onchange_product_uom_qty()
-        if not res:
-            res = self._check_package()
-        return res

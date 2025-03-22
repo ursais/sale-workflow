@@ -3,11 +3,10 @@
 
 {
     "name": "Sale order min quantity",
-    "version": "14.0.1.1.1",
+    "version": "14.0.1.1.3",
     "category": "Sales Management",
     "author": "Akretion, Odoo Community Association (OCA)",
-    "contributors": ["Ashish Hirpara"],
-    "maintainers": ["ashishhirapara"],
+    "maintainers": ["alexey-pelykh"],
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
     "external_dependencies": {
@@ -17,7 +16,6 @@
     "data": [
         "views/product_category_views.xml",
         "views/product_template_views.xml",
-        "views/product_product_views.xml",
         "views/sale_views.xml",
     ],
     "pre_init_hook": "rename_module",

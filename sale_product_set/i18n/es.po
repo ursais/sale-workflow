@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-13 01:19+0000\n"
-"PO-Revision-Date: 2022-03-24 18:47+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"PO-Revision-Date: 2024-01-30 14:34+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__active
@@ -44,13 +44,19 @@ msgstr "Añadir conjunto en la línea de pedido de ventas"
 #. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add_from_set
 msgid "Add set to sale order"
+msgstr "Añadir conjunto a la orden de venta"
+
+#. module: sale_product_set
+#: model_terms:ir.ui.view,arch_db:sale_product_set.res_config_settings_inherit_view
+msgid ""
+"Archive/unarchive product sets related to partners together with partner"
 msgstr ""
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
 msgid "Archived"
-msgstr ""
+msgstr "Archivado"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
@@ -61,6 +67,16 @@ msgstr "Cancelar"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__company_id
 msgid "Company"
 msgstr "Compañía"
+
+#. module: sale_product_set
+#: model:ir.model,name:sale_product_set.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_product_set
+#: model:ir.model,name:sale_product_set.model_res_partner
+msgid "Contact"
+msgstr ""
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__create_uid
@@ -90,6 +106,8 @@ msgstr "Descuento (%)"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__display_name
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__display_name
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__display_name
+#: model:ir.model.fields,field_description:sale_product_set.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_product_set.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -105,6 +123,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__id
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__id
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__id
+#: model:ir.model.fields,field_description:sale_product_set.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_product_set.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
@@ -117,6 +137,8 @@ msgstr "Referencia interna"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set____last_update
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add____last_update
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line____last_update
+#: model:ir.model.fields,field_description:sale_product_set.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:sale_product_set.field_res_partner____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
@@ -152,14 +174,17 @@ msgid "Product"
 msgstr "Producto"
 
 #. module: sale_product_set
+#: model_terms:ir.ui.view,arch_db:sale_product_set.res_config_settings_inherit_view
+msgid "Product Sets"
+msgstr ""
+
+#. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_view
 #: model:ir.model,name:sale_product_set.model_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_id
 #: model:ir.ui.menu,name:sale_product_set.menu_product_set_config
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_search
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_tree
 msgid "Product set"
 msgstr "Conjunto de productos"
 
@@ -173,14 +198,11 @@ msgstr "Establece referencia interna producto"
 #: model:ir.model,name:sale_product_set.model_product_set_line
 #: model:ir.ui.menu,name:sale_product_set.menu_product_set_line_config
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_search
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_tree
 msgid "Product set line"
 msgstr "Línea de conjunto de productos"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_line_ids
-#: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
 msgid "Product set lines"
 msgstr "Líneas de conjunto de productos"
 
@@ -219,6 +241,18 @@ msgstr "Conjunto"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__skip_existing_products
 msgid "Skip Existing Products"
 msgstr "Saltar productos existentes"
+
+#. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_res_config_settings__archive_partner_product_sets
+msgid "Sync product sets active state with partner"
+msgstr ""
+
+#. module: sale_product_set
+#: model:ir.model.fields,help:sale_product_set.field_res_config_settings__archive_partner_product_sets
+msgid ""
+"When a partner is archived or un-archived             its product sets are "
+"archived or un-archived as well."
+msgstr ""
 
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_product_set_add

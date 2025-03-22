@@ -99,6 +99,7 @@ class BlanketOrder(models.Model):
             ("open", "Open"),
             ("done", "Done"),
             ("expired", "Expired"),
+            ("cancel", "Cancelled"),
         ],
         compute="_compute_state",
         store=True,
@@ -211,7 +212,7 @@ class BlanketOrder(models.Model):
         for order in self:
             if not order.confirmed:
                 order.state = "draft"
-            elif order.validity_date <= today:
+            elif order.validity_date <= today and order.state != "cancel":
                 order.state = "expired"
             elif float_is_zero(
                 sum(order.line_ids.mapped("remaining_uom_qty")),
@@ -264,9 +265,33 @@ class BlanketOrder(models.Model):
             values["team_id"] = self.partner_id.team_id.id
         self.update(values)
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        translated_draft = _("Draft")
+        for vals in vals_list:
+            company_id = vals.get("company_id")
+            company = (
+                self.env["res.company"].browse(company_id)
+                if company_id
+                else self.env.company
+            )
+            if (
+                company.blanket_order_seq_number_from_draft
+                and vals.get("name", translated_draft) == translated_draft
+            ):
+                vals["name"] = (
+                    self.env["ir.sequence"].next_by_code("sale.blanket.order")
+                    or translated_draft
+                )
+        result = super().create(vals_list)
+        return result
+
     def unlink(self):
         for order in self:
-            if order.state not in ("draft", "expired") or order._check_active_orders():
+            if (
+                order.state not in ("draft", "expired", "cancel")
+                or order._check_active_orders()
+            ):
                 raise UserError(
                     _(
                         "You can not delete an open blanket or "
@@ -297,12 +322,17 @@ class BlanketOrder(models.Model):
 
     def action_confirm(self):
         self._validate()
+        translated_draft = _("Draft")
         for order in self:
-            sequence_obj = self.env["ir.sequence"]
-            if order.company_id:
-                sequence_obj = sequence_obj.with_company(order.company_id.id)
-            name = sequence_obj.next_by_code("sale.blanket.order")
-            order.write({"confirmed": True, "name": name})
+            update_data = {"confirmed": True}
+            # if the order already had a sequence number we don't need to set it again
+            if not order.name or order.name == translated_draft:
+                sequence_obj = self.env["ir.sequence"]
+                if order.company_id:
+                    sequence_obj = sequence_obj.with_company(order.company_id.id)
+                name = sequence_obj.next_by_code("sale.blanket.order")
+                update_data["name"] = name
+            order.write(update_data)
         return True
 
     def _check_active_orders(self):
@@ -322,12 +352,12 @@ class BlanketOrder(models.Model):
                         "Try to cancel them before."
                     )
                 )
-            order.write({"state": "expired"})
+            order.write({"state": "cancel"})
         return True
 
     def action_view_sale_orders(self):
         sale_orders = self._get_sale_orders()
-        action = self.env.ref("sale.action_orders").read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id("sale.action_orders")
         if len(sale_orders) > 0:
             action["domain"] = [("id", "in", sale_orders.ids)]
             action["context"] = [("id", "in", sale_orders.ids)]
@@ -336,9 +366,9 @@ class BlanketOrder(models.Model):
         return action
 
     def action_view_sale_blanket_order_line(self):
-        action = self.env.ref(
-            "sale_blanket_order" ".act_open_sale_blanket_order_lines_view_tree"
-        ).read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "sale_blanket_order.act_open_sale_blanket_order_lines_view_tree"
+        )
         lines = self.mapped("line_ids")
         if len(lines) > 0:
             action["domain"] = [("id", "in", lines.ids)]
@@ -450,27 +480,27 @@ class BlanketOrderLine(models.Model):
     )
     date_schedule = fields.Date(string="Scheduled Date")
     original_uom_qty = fields.Float(
-        string="Original quantity",
+        string="Original Qty",
         required=True,
         default=1,
         digits="Product Unit of Measure",
     )
     ordered_uom_qty = fields.Float(
-        string="Ordered quantity", compute="_compute_quantities", store=True
+        string="Ordered Qty", compute="_compute_quantities", store=True
     )
     invoiced_uom_qty = fields.Float(
-        string="Invoiced quantity", compute="_compute_quantities", store=True
+        string="Invoiced Qty", compute="_compute_quantities", store=True
     )
     remaining_uom_qty = fields.Float(
-        string="Remaining quantity", compute="_compute_quantities", store=True
+        string="Remaining Qty", compute="_compute_quantities", store=True
     )
     remaining_qty = fields.Float(
-        string="Remaining quantity in base UoM",
+        string="Remaining Qty in base UoM",
         compute="_compute_quantities",
         store=True,
     )
     delivered_uom_qty = fields.Float(
-        string="Delivered quantity", compute="_compute_quantities", store=True
+        string="Delivered Qty", compute="_compute_quantities", store=True
     )
     sale_lines = fields.One2many(
         "sale.order.line",
@@ -483,7 +513,9 @@ class BlanketOrderLine(models.Model):
         "res.company", related="order_id.company_id", store=True
     )
     currency_id = fields.Many2one("res.currency", related="order_id.currency_id")
-    partner_id = fields.Many2one(related="order_id.partner_id", string="Customer")
+    partner_id = fields.Many2one(
+        related="order_id.partner_id", string="Partner", store=True
+    )
     user_id = fields.Many2one(related="order_id.user_id", string="Responsible")
     payment_term_id = fields.Many2one(
         related="order_id.payment_term_id", string="Payment Terms"

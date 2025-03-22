@@ -22,18 +22,23 @@ msgid "Allowed Products"
 msgstr ""
 
 #. module: sale_order_product_assortment
+#: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_product_assortment
 #: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order__has_allowed_products
 msgid "Has Allowed Products"
 msgstr ""
 
 #. module: sale_order_product_assortment
-#: model_terms:ir.ui.view,arch_db:sale_order_product_assortment.view_order_form
-msgid "Product"
-msgstr "Producte"
+#: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order__id
+msgid "ID"
+msgstr ""
 
 #. module: sale_order_product_assortment
-#: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order_line__product_allowed_id
-msgid "Product with allowed list"
+#: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_order_product_assortment
@@ -42,9 +47,18 @@ msgid "Sales Order"
 msgstr "Comandes de venda"
 
 #. module: sale_order_product_assortment
-#: model:ir.model,name:sale_order_product_assortment.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Línia de comanda de vendes"
+#: code:addons/sale_order_product_assortment/models/sale_order.py:0
+#, python-format
+msgid ""
+"This SO contains one or more products that are not allowed for partner %s:\n"
+"- %s"
+msgstr ""
+
+#~ msgid "Product"
+#~ msgstr "Producte"
+
+#~ msgid "Sales Order Line"
+#~ msgstr "Línia de comanda de vendes"
 
 #~ msgid "Blacklisted Products"
 #~ msgstr "Productes a la llista negra"
