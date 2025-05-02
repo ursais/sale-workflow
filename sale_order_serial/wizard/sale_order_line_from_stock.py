@@ -13,7 +13,7 @@ class SaleOrderLineFromStock(models.TransientModel):
     value_ids = fields.Many2many(
         "product.attribute.value", string="Required Attribute Values"
     )
-    serial_list = fields.Text(string="Serial List")
+    serial_list = fields.Text()
     quant_ids = fields.Many2many("stock.quant", string="Quants", readonly=False)
     list_limit = fields.Integer(string="Search Limit", default=10)
     product_template_attribute_value_ids = fields.Many2many(

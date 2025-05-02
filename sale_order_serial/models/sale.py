@@ -19,8 +19,8 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    serial_list = fields.Text(string="Serial List", copy=False)
-    serial_sequence_id = fields.Many2one("ir.sequence", string="Serial Sequence")
+    serial_list = fields.Text(copy=False)
+    serial_sequence_id = fields.Many2one("ir.sequence")
 
     @api.constrains("serial_list")
     def _constrain_serial_list(self):
@@ -51,18 +51,16 @@ class SaleOrderLine(models.Model):
                         potential_serial_list = pl.serial_list.split("\n")
                         if serial in potential_serial_list:
                             raise ValidationError(
-                                _(
-                                    "Sale Line ({}) has serial number: {}".format(
-                                        pl.id, serial
-                                    )
-                                )
+                                _(f"Sale Line ({pl.id}) has serial number: {serial}")
                             )
         return True
 
-    @api.model
-    def create(self, values):
-        record = super(SaleOrderLine, self).create(values)
-        if not record.serial_sequence_id and record.product_id.tracking == "serial":
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        for record in records.filtered(
+            lambda so: not so.serial_sequence_id and so.product_id.tracking == "serial"
+        ):
             # Take from product.
             serial_sequence_id = record.product_id.serial_sequence_id
             # Take from customer
@@ -77,13 +75,12 @@ class SaleOrderLine(models.Model):
 
             if serial_sequence_id:
                 record.serial_sequence_id = serial_sequence_id
-        return record
+        return records
 
     def fill_serials(self):
         for line in self.filtered(
-            lambda l: l.product_id.tracking == "serial" and l.product_uom_qty > 0
+            lambda sol: sol.product_id.tracking == "serial" and sol.product_uom_qty > 0
         ):
-            print ("============line.serial_list======", line.serial_list)
             if line.serial_list and line.serial_list.strip():
                 ordered_qty = line.product_uom_qty
                 serial_list = [
@@ -92,7 +89,7 @@ class SaleOrderLine(models.Model):
                 serial_qty = len(serial_list)
                 if ordered_qty < serial_qty:
                     raise ValidationError(
-                        ("Ordered QTY is less than Serials.  Please resolve.")
+                        _("Ordered QTY is less than Serials.  Please resolve.")
                     )
                 if ordered_qty > serial_qty and line.serial_sequence_id:
                     serial_list += [
