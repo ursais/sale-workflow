@@ -1,5 +1,4 @@
 <odoo>
-
     <record id="sequence_view_inherit" model="ir.ui.view">
         <field name="name">ir.sequence.form.inherit</field>
         <field name="model">ir.sequence</field>
@@ -10,5 +9,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

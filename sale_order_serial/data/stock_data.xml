@@ -1,5 +1,4 @@
 <odoo>
-
     <record id="route_from_stock" model="stock.route">
         <field name="name">From Stock</field>
         <field name="company_id" />
@@ -16,5 +15,4 @@
         <field name="procure_method">make_to_stock</field>
         <field name="route_id" ref="route_from_stock" />
     </record>
-
 </odoo>

@@ -1,32 +1,38 @@
 <odoo>
-
     <record id="view_sale_order_line_from_stock_form_view" model="ir.ui.view">
         <field name="name">sale.order.line.from_stock.form</field>
         <field name="model">sale.order.line.from_stock</field>
         <field name="arch" type="xml">
             <form string="Add from Stock">
                 <group>
-                     <group colspan="4">
+                    <group colspan="4">
                         <field name="sale_id" invisible="1" />
-                        <field name="product_template_attribute_value_ids" invisible="1" />
+                        <field
+                            name="product_template_attribute_value_ids"
+                            invisible="1"
+                        />
                         <field name="product_tmpl_id" />
-                        <field name="value_ids" widget="many2many_tags" domain="[('id', 'in', product_template_attribute_value_ids)]" />
+                        <field
+                            name="value_ids"
+                            widget="many2many_tags"
+                            domain="[('id', 'in', product_template_attribute_value_ids)]"
+                        />
                         <field name="serial_list" />
                         <field name="list_limit" />
-                     </group>
-                     <group colspan="4">
+                    </group>
+                    <group colspan="4">
                         <field
                             name="quant_ids"
                             widget="2many_list"
                             nolabel="1"
                             readonly="0"
                         />
-                     </group>
+                    </group>
                 </group>
                 <footer>
                     <button string="Add" class="btn-primary" type="object" name="add" />
                 </footer>
-           </form>
+            </form>
         </field>
     </record>
 
@@ -54,5 +60,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
