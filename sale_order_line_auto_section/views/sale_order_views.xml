@@ -8,7 +8,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <button name="action_quotation_send" position="before">
+            <xpath expr="//field[@name='order_line']" position="after">
                 <button
                     name="action_organize_lines_by_category"
                     string="Organize by Category"
@@ -16,7 +16,7 @@
                     class="btn-secondary"
                     invisible="state not in ('draft', 'sent')"
                 />
-            </button>
+            </xpath>
         </field>
     </record>
 

@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 {
-    "name": "Sale Line Auto Section",
+    "name": "Sale Order Line Auto Section",
     "summary": "Automatically organize sale order lines into sections by "
     "product category",
     "version": "17.0.1.0.0",

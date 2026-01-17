@@ -4,7 +4,7 @@
 from odoo.tests import TransactionCase
 
 
-class TestSaleLineAutoSection(TransactionCase):
+class TestSaleOrderLineAutoSection(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

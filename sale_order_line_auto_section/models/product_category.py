@@ -6,6 +6,7 @@ from odoo import fields, models
 
 class ProductCategory(models.Model):
     _inherit = "product.category"
+    _order = "section_sequence, display_name"
 
     section_sequence = fields.Integer(
         default=10,
