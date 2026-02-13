@@ -33,7 +33,7 @@ msgid "When checked, delivery and invoice addresses are filtered to only show ad
 msgstr "Lorsque cochée, les adresses de livraison et de facturation sont filtrées pour n'afficher que les adresses appartenant à l'entreprise commerciale du client."
 
 #. module: sale_partner_address_filter
-#: model:ir.model,name,sale_partner_address_filter.model_sale_order
+#: model:ir.model,name,sale.model_sale_order
 msgid "Sales Order"
 msgstr "Bon de commande"
 
