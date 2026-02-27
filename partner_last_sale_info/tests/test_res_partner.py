@@ -52,6 +52,9 @@ class TestResPartner(TransactionCase):
             }
         )
 
+        # Confirm the order to make it visible to the computation
+        sale_order1.action_confirm()
+
         # Check that last sale order date is updated
         self.customer._compute_last_sale_order_date()
         self.assertTrue(self.customer.last_sale_order_date)
@@ -75,6 +78,9 @@ class TestResPartner(TransactionCase):
                 ],
             }
         )
+
+        # Confirm the second order
+        sale_order2.action_confirm()
 
         # Check that last sale order date is updated to the newer one
         self.customer._compute_last_sale_order_date()
