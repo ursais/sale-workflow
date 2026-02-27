@@ -6,7 +6,7 @@ from odoo import fields, models
 
 class ProductCategory(models.Model):
     _inherit = "product.category"
-    _order = "section_sequence, display_name"
+    _order = "section_sequence,name"
 
     section_sequence = fields.Integer(
         default=10,
@@ -16,4 +16,5 @@ class ProductCategory(models.Model):
     section_title = fields.Char(
         help="Title to use when creating sale order sections for this category. "
         "If empty, the category name will be used.",
+        translate=True,
     )
