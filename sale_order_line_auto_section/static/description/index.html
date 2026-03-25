@@ -375,6 +375,8 @@ lines into sections based on product categories.</p>
 <p>It provides:</p>
 <ul class="simple">
 <li>A button on sale orders to reorganize lines by product category</li>
+<li>Option to sort lines within sections by manual order or internal
+reference</li>
 <li>Section sequence field on product categories to control section order</li>
 <li>Section title field on product categories to customize section
 headers</li>
@@ -399,10 +401,19 @@ headers</li>
 <ol class="arabic simple">
 <li>Go to <strong>Sales &gt; Configuration &gt; Product Categories</strong></li>
 <li>Open a product category</li>
+<li>In the <strong>Sale Order Section Options</strong> group:<ul>
 <li>Set the <strong>Section Sequence</strong> to control the order (lower values
 appear first)</li>
 <li>Optionally set a <strong>Section Title</strong> to customize the section header
 (defaults to category name)</li>
+<li>Choose <strong>Sort Lines By</strong> to control how lines are sorted within
+sections:<ul>
+<li><strong>Manual Order</strong>: Keeps current line sequence</li>
+<li><strong>Internal Reference</strong>: Sorts by product’s internal reference</li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
 </div>
 <div class="section" id="usage">
@@ -414,9 +425,27 @@ appear first)</li>
 <li>The order lines will be reorganized with section headers for each
 product category</li>
 <li>Sections are ordered by the category’s section sequence, then by name</li>
+<li>Lines within each section are sorted according to the category’s
+sorting preference (configured on the product category):<ul>
+<li><strong>Manual Order</strong>: Keeps the current sequence of lines</li>
+<li><strong>Internal Reference</strong>: Sorts lines by product’s internal
+reference</li>
+</ul>
+</li>
 <li>Only auto-generated sections are removed and replaced</li>
 <li>Manual sections and notes are preserved at the end of the order</li>
 <li>Running the action multiple times will not create duplicate sections</li>
+</ol>
+<p>To configure category sorting:</p>
+<ol class="arabic simple">
+<li>Go to <strong>Inventory &gt; Configuration &gt; Product Categories</strong></li>
+<li>Select or create a category</li>
+<li>In the <strong>Sale Order Section Options</strong> group:<ul>
+<li>Set the <strong>Section Sequence</strong> to control section order</li>
+<li>Set the <strong>Section Title</strong> to customize the header text</li>
+<li>Choose <strong>Sort Lines By</strong> to control line ordering within sections</li>
+</ul>
+</li>
 </ol>
 </div>
 <div class="section" id="bug-tracker">

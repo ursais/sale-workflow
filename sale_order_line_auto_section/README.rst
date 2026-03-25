@@ -34,6 +34,8 @@ lines into sections based on product categories.
 It provides:
 
 -  A button on sale orders to reorganize lines by product category
+-  Option to sort lines within sections by manual order or internal
+   reference
 -  Section sequence field on product categories to control section order
 -  Section title field on product categories to customize section
    headers
@@ -50,10 +52,17 @@ To configure product categories for automatic sectioning:
 
 1. Go to **Sales > Configuration > Product Categories**
 2. Open a product category
-3. Set the **Section Sequence** to control the order (lower values
-   appear first)
-4. Optionally set a **Section Title** to customize the section header
-   (defaults to category name)
+3. In the **Sale Order Section Options** group:
+
+   -  Set the **Section Sequence** to control the order (lower values
+      appear first)
+   -  Optionally set a **Section Title** to customize the section header
+      (defaults to category name)
+   -  Choose **Sort Lines By** to control how lines are sorted within
+      sections:
+
+      -  **Manual Order**: Keeps current line sequence
+      -  **Internal Reference**: Sorts by product's internal reference
 
 Usage
 =====
@@ -65,9 +74,26 @@ To organize sale order lines by category:
 3. The order lines will be reorganized with section headers for each
    product category
 4. Sections are ordered by the category's section sequence, then by name
-5. Only auto-generated sections are removed and replaced
-6. Manual sections and notes are preserved at the end of the order
-7. Running the action multiple times will not create duplicate sections
+5. Lines within each section are sorted according to the category's
+   sorting preference (configured on the product category):
+
+   -  **Manual Order**: Keeps the current sequence of lines
+   -  **Internal Reference**: Sorts lines by product's internal
+      reference
+
+6. Only auto-generated sections are removed and replaced
+7. Manual sections and notes are preserved at the end of the order
+8. Running the action multiple times will not create duplicate sections
+
+To configure category sorting:
+
+1. Go to **Inventory > Configuration > Product Categories**
+2. Select or create a category
+3. In the **Sale Order Section Options** group:
+
+   -  Set the **Section Sequence** to control section order
+   -  Set the **Section Title** to customize the header text
+   -  Choose **Sort Lines By** to control line ordering within sections
 
 Bug Tracker
 ===========

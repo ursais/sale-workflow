@@ -33,7 +33,7 @@ class SaleOrder(models.Model):
         # Get product lines (lines with products, no display type)
         product_lines = self.order_line.filtered(
             lambda line: not line.display_type and line.product_id
-        ).sorted("sequence")
+        )
         if not product_lines:
             return
 
@@ -74,6 +74,13 @@ class SaleOrder(models.Model):
             section_lines = self.order_line.filtered(
                 lambda line, cat=category: line.product_id.categ_id == cat
             )
+
+            # Sort lines based on the category's sorting preference
+            if category.section_sort_by == "default_code":
+                section_lines = section_lines.sorted("product_id.default_code")
+            else:
+                section_lines = section_lines.sorted("sequence")
+
             for j, line in enumerate(section_lines, 1):
                 line.sequence = section.sequence + j
 

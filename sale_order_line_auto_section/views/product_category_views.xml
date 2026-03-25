@@ -9,8 +9,11 @@
         <field name="inherit_id" ref="product.product_category_form_view" />
         <field name="arch" type="xml">
             <field name="parent_id" position="after">
-                <field name="section_sequence" />
-                <field name="section_title" />
+                <group string="Sale Order Section Options">
+                    <field name="section_sequence" />
+                    <field name="section_title" />
+                    <field name="section_sort_by" />
+                </group>
             </field>
         </field>
     </record>

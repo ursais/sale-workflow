@@ -18,3 +18,12 @@ class ProductCategory(models.Model):
         "If empty, the category name will be used.",
         translate=True,
     )
+    section_sort_by = fields.Selection(
+        [
+            ("sequence", "Manual Order"),
+            ("default_code", "Internal Reference"),
+        ],
+        string="Sort Lines By",
+        default="sequence",
+        help="How to sort lines within this section when organizing by category",
+    )
