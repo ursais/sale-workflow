@@ -77,9 +77,9 @@ class SaleOrder(models.Model):
 
             # Sort lines based on the category's sorting preference
             if category.section_sort_by == "default_code":
-                section_lines = section_lines.sorted("product_id.default_code")
-            else:
-                section_lines = section_lines.sorted("sequence")
+                section_lines = section_lines.sorted(
+                    lambda line: line.product_id.default_code or ""
+                )
 
             for j, line in enumerate(section_lines, 1):
                 line.sequence = section.sequence + j
