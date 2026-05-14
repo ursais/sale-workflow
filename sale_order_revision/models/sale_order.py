@@ -18,14 +18,10 @@ class SaleOrder(models.Model):
         comodel_name="sale.order",
     )
 
-    # Overwrite as sales.order can be multi-company
-    _sql_constraints = [
-        (
-            "revision_unique",
-            "unique(unrevisioned_name, revision_number, company_id)",
-            "Order Reference and revision must be unique per Company.",
-        )
-    ]
+    _revision_unique = models.Constraint(
+        "unique(unrevisioned_name, revision_number, company_id)",
+        "Order Reference and revision must be unique per Company.",
+    )
 
     def _prepare_revision_data(self, new_revision):
         vals = super()._prepare_revision_data(new_revision)

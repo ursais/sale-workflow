@@ -31,14 +31,10 @@ class SalePrimeship(models.Model):
 
     current = fields.Boolean(string="Currently Active", compute="_compute_current")
 
-    _sql_constraints = [
-        # Constraint for One2one impl of "sale.order.line".primeship_id
-        (
-            "unique_order_line",
-            "UNIQUE(order_line_id)",
-            "A sale order line can only have one primeship!",
-        )
-    ]
+    _unique_order_line = models.Constraint(
+        "UNIQUE(order_line_id)",
+        "A sale order line can only have one primeship!",
+    )
 
     @api.depends("start_date", "end_date")
     def _compute_name(self):
