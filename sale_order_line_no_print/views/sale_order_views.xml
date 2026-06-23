@@ -9,10 +9,9 @@
         <field name="priority">99</field>
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/list//field[@name='price_subtotal']"
+                expr="//field[@name='order_line']/list/field[@name='price_total'][@string='Amount']"
                 position="after"
             >
-                <field name="price_total" invisible="1" />
                 <field
                     name="display_in_report"
                     widget="boolean_toggle"

@@ -3,8 +3,8 @@
 {
     "name": "Sale order line hidden in report",
     "summary": "Hide order lines in reports",
-    "version": "18.0.1.0.0",
-    "development_status": "Alpha",
+    "version": "19.0.1.0.1",
+    "development_status": "Beta",
     "category": "Sales/Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Moduon, Odoo Community Association (OCA)",
@@ -12,9 +12,8 @@
     "license": "LGPL-3",
     "depends": ["sale"],
     "data": [
-        "views/report_invoice_document.xml",
-        "views/report_saleorder_document.xml",
         "views/account_move_views.xml",
         "views/sale_order_views.xml",
     ],
+    "installable": True,
 }
