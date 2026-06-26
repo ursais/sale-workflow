@@ -36,10 +36,27 @@
                 <filter
                     name="tier_validated"
                     string="Validated"
-                    domain="[('validated', '=', True)]"
+                    domain="[('validation_status', '=', 'validated')]"
                     help="SOs validated and ready to be confirmed"
                 />
             </filter>
+        </field>
+    </record>
+    <record id="sale_order_tree_tier_validation" model="ir.ui.view">
+        <field name="name">sale.order.list - sale_tier_validation</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_tree" />
+        <field name="arch" type="xml">
+            <list position="inside">
+                <field
+                    name="validation_status"
+                    widget="badge"
+                    optional="hide"
+                    decoration-info="validation_status == 'pending'"
+                    decoration-danger="validation_status == 'rejected'"
+                    decoration-success="validation_status == 'validated'"
+                />
+            </list>
         </field>
     </record>
 </odoo>
