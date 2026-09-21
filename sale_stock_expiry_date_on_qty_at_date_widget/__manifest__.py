@@ -4,7 +4,7 @@
 {
     "name": "Sale Stock Expiry Date on Qty at Date widget",
     "summary": "Show next Expiry Date on Qty at Date Widget",
-    "version": "18.0.1.0.0",
+    "version": "20.0.1.0.0",
     "development_status": "Alpha",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",

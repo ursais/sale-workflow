@@ -44,7 +44,7 @@
                 t-attf-class="text-end {{ 'd-none d-sm-table-cell' if report_type == 'html' else '' }}"
             >
                 <strong t-if="line.discount_fixed &gt; 0" class="text-info">
-                    <t t-esc="line.discount_fixed" />
+                    <t t-out="line.discount_fixed" />
                 </strong>
             </td>
         </xpath>

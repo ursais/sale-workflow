@@ -5,17 +5,16 @@
 
 {
     "name": "Sale Automatic Workflow",
-    "version": "19.0.1.1.1",
+    "version": "20.0.1.1.1",
     "category": "Sales Management",
     "license": "AGPL-3",
     "author": "Akretion, Camptocamp, Sodexis, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/sale_order_views.xml",
         "views/sale_workflow_process_views.xml",
-        "data/automatic_workflow_data.xml",
-    ],
+        "data/automatic_workflow_data.xml"],
     "installable": True,
 }

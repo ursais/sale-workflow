@@ -5,7 +5,7 @@
     "name": "Sale Block no Stock",
     "summary": """Block Sales if products has not enough Quantity
     based on a chosen field""",
-    "version": "18.0.1.0.0",
+    "version": "20.0.1.0.0",
     "development_status": "Alpha",
     "category": "Sales/Sales",
     "website": "https://github.com/OCA/sale-workflow",
@@ -16,8 +16,7 @@
     "installable": True,
     "depends": ["sale_stock", "mail_message_destiny_link_template"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/res_config_settings_views.xml",
-        "wizard/sale_order_block_wizard_views.xml",
-    ],
+        "wizard/sale_order_block_wizard_views.xml"],
 }

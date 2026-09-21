@@ -1,10 +1,11 @@
 // Copyright 2026 Tecnativa - Carlos Roca
 // License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+import { NotificationPlugin } from "@web/core/notifications/notification_plugin";
 import {
     SelectionField,
     selectionField,
 } from "@web/views/fields/selection/selection_field";
-import {Component} from "@odoo/owl";
+import { Component, usePlugin } from "@odoo/owl";
 import {_t} from "@web/core/l10n/translation";
 import {registry} from "@web/core/registry";
 import {usePopover} from "@web/core/popover/popover_hook";
@@ -19,7 +20,7 @@ export class SemaphorePopover extends Component {
     setup() {
         super.setup(...arguments);
         this.orm = useService("orm");
-        this.notification = useService("notification");
+        this.notification = usePlugin(NotificationPlugin);
     }
     onClickSetPriceSuccess() {
         this.props.record.update({
@@ -59,7 +60,7 @@ export class Semaphore extends SelectionField {
         this.popover = usePopover(this.constructor.components.Popover, {
             position: "left",
         });
-        this.notification = useService("notification");
+        this.notification = usePlugin(NotificationPlugin);
     }
     get string() {
         if (this.type === "selection") {

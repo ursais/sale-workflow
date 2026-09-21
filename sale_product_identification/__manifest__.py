@@ -4,12 +4,11 @@
     "name": "Sale Product Identification Numbers",
     "author": "Binhex,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
-    "version": "18.0.1.0.0",
+    "version": "20.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["sale", "partner_identification"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/product_template_views.xml",
-        "wizards/wizard_confirm_identification.xml",
-    ],
+        "wizards/wizard_confirm_identification.xml"],
 }

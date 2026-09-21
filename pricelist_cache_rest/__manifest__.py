@@ -3,7 +3,7 @@
 {
     "name": "Pricelist Cache Rest",
     "summary": "Provides an endpoint to get product prices for a given customer",
-    "version": "18.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Hidden",
     "author": "Odoo Community Association (OCA), Camptocamp",
     "license": "AGPL-3",

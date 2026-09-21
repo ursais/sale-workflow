@@ -147,11 +147,7 @@
                 <filter
                     string="Not Invoiced &amp; Due"
                     name="over_plan_date"
-                    domain="[
-                        ('state', 'in', ('sale','done')),
-                        ('invoiced', '=', False),
-                        ('plan_date', '&lt;=', context_today().strftime('%Y-%m-%d'))
-                    ]"
+                    domain="[('state', 'in', ('sale', 'done')), ('invoiced', '=', False), ('plan_date', '&lt;=', 'today')]"
                 />
                 <group expand="0" string="Group By">
                     <filter

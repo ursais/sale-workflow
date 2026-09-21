@@ -16,7 +16,7 @@
                 t-if="doc.company_id.show_client_order_ref_sale"
                 class="text-start"
             >
-                <span t-esc="line.client_order_ref" />
+                <span t-out="line.client_order_ref" />
             </td>
         </xpath>
     </template>

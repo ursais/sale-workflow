@@ -6,7 +6,7 @@
     "summary": """
     Glue module between `sell_only_by_packaging` and `sale_product_set_packaging_qty`.
     """,
-    "version": "18.0.1.0.0",
+    "version": "20.0.1.0.0",
     "development_status": "Alpha",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",

@@ -3,7 +3,7 @@
 {
     "name": "Sale Elaboration",
     "summary": "Set an elaboration for any sale line",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "development_status": "Production/Stable",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
@@ -13,7 +13,7 @@
     "installable": True,
     "depends": ["sale_stock"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "security/security.xml",
         "views/product_views.xml",
         "views/res_config_settings_views.xml",
@@ -26,8 +26,7 @@
         "reports/report_base.xml",
         "reports/report_deliveryslip.xml",
         "reports/report_picking_operations.xml",
-        "views/product_category_views.xml",
-    ],
+        "views/product_category_views.xml"],
     "demo": ["demo/sale_elaboration_demo.xml"],
     "pre_init_hook": "pre_init_hook",
     "maintainers": ["CarlosRoca13", "rafaelbn", "sergio-teruel", "yajo"],

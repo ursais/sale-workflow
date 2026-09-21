@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Order Cancel Optional Email",
-    "version": "18.0.1.0.0",
+    "version": "20.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "category": "Sales",
     "license": "AGPL-3",

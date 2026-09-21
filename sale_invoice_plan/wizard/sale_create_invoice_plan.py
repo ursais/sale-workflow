@@ -40,7 +40,7 @@ class SaleCreateInvoicePlan(models.TransientModel):
                 )
 
     def sale_create_invoice_plan(self):
-        sale = self.env["sale.order"].browse(self._context.get("active_id"))
+        sale = self.env["sale.order"].browse(self.env.context.get("active_id"))
         self.ensure_one()
         sale.create_invoice_plan(
             self.num_installment,

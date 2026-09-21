@@ -6,17 +6,16 @@
     "name": "Product Price Category",
     "summary": "Add Price Category field on product and allow to apply "
     "a pricelist on this field.",
-    "version": "18.0.1.0.0",
+    "version": "20.0.1.0.0",
     "author": "Camptocamp SA, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Product",
     "depends": ["sale_stock"],
     "website": "https://github.com/OCA/sale-workflow",
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/product_pricelist.xml",
-        "views/product_template.xml",
-    ],
+        "views/product_template.xml"],
     "maintainers": ["sbejaoui"],
     "installable": True,
 }

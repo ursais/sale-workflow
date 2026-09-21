@@ -7,7 +7,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <!-- Move packaging and packaging qty before product qty in tree view -->
+            <!-- Move packaging and packaging qty before product qty in list view -->
             <xpath
                 expr="//field[@name='order_line']/list/field[@name='product_uom_qty']"
                 position="before"

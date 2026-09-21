@@ -5,7 +5,7 @@
 {
     "name": "Sale Pricelist Packaging",
     "summary": "Sale Pricelist Packaging",
-    "version": "18.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "sale",
     "website": "https://github.com/OCA/sale-workflow",
     "author": " Akretion, Odoo Community Association (OCA)",
